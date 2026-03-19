@@ -1,0 +1,29 @@
+export const SEVERITY = {
+  "HOMICIDE": 5, "CRIMINAL SEXUAL ASSAULT": 5,
+  "ROBBERY": 4, "AGGRAVATED ASSAULT": 4,
+  "BURGLARY": 3, "MOTOR VEHICLE THEFT": 3,
+  "THEFT": 2, "BATTERY": 2,
+  "NARCOTICS": 1, "OTHER OFFENSE": 1,
+}
+
+export const WEIGHTS = {
+  "HOMICIDE": 100, "CRIMINAL SEXUAL ASSAULT": 80,
+  "ROBBERY": 60, "AGGRAVATED ASSAULT": 50,
+  "KIDNAPPING": 50, "HUMAN TRAFFICKING": 50,
+  "ARSON": 45, "WEAPONS VIOLATION": 40,
+  "BURGLARY": 30, "MOTOR VEHICLE THEFT": 25,
+  "BATTERY": 20, "ASSAULT": 20,
+  "STALKING": 18, "INTIMIDATION": 15,
+  "THEFT": 10, "CRIMINAL TRESPASS": 8,
+  "NARCOTICS": 8, "CRIMINAL DAMAGE": 7,
+  "DECEPTIVE PRACTICE": 6, "OTHER NARCOTIC VIOLATION": 6,
+  "PROSTITUTION": 5, "GAMBLING": 4,
+  "LIQUOR LAW VIOLATION": 3, "PUBLIC PEACE VIOLATION": 3,
+  "INTERFERENCE WITH PUBLIC OFFICER": 3, "OBSCENITY": 3,
+  "NON-CRIMINAL": 1, "OTHER OFFENSE": 5,
+}
+
+export const DOW_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+export const DOW_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+export const LINK_COLORS = ["#5c7cfa","#ff6b9d","#c77dff","#00d4aa","#ffd166","#06d6a0","#118ab2","#ef476f","#ffc43d","#1b9aaa","#f4a261","#e76f51","#a8dadc","#457b9d","#e63946"]

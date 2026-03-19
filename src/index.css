@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+}
+
+@keyframes sentinel-spin {
+  to { transform: rotate(360deg); }
+}
+
+.sentinel-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #1a1a2e;
+  border-top-color: #5c7cfa;
+  border-radius: 50%;
+  animation: sentinel-spin 0.8s linear infinite;
+}
