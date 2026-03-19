@@ -1,12 +1,12 @@
 # Sentinel
 
-Real-time Chicago crime intelligence platform with predictive risk modeling, AI-powered briefings, and network link analysis.
+AI-powered Chicago crime intelligence platform for mapping incidents, analyzing historical risk patterns, and generating neighborhood-level intelligence briefings.
 
 **Live Demo:** [sentinel-one-xi.vercel.app](https://sentinel-one-xi.vercel.app)
 
 ## Overview
 
-Sentinel is a crime intelligence dashboard built on 50,000+ real incidents from the Chicago Police Department API. It combines geospatial visualization, statistical pattern modeling, and AI-powered analysis to transform raw crime data into actionable intelligence.
+Sentinel is a crime intelligence platform built on 50,000+ incident records from the Chicago Police Department API. It combines interactive mapping, historical pattern analysis, AI-generated briefings, and natural-language querying to help users explore crime trends and identify elevated-risk areas more efficiently.
 
 ![Sentinel Dashboard](screenshots/dashboard.png)
 
