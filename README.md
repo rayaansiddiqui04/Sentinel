@@ -8,6 +8,8 @@ Real-time Chicago crime intelligence platform with predictive risk modeling, AI-
 
 Sentinel is a crime intelligence dashboard built on 50,000+ real incidents from the Chicago Police Department API. It combines geospatial visualization, statistical pattern modeling, and AI-powered analysis to transform raw crime data into actionable intelligence.
 
+![Sentinel Dashboard](screenshots/dashboard.png)
+
 ## Features
 
 - **Interactive Crime Map** — Plot incidents on a dark-themed Chicago map with severity-coded markers, filterable by crime type and severity level
@@ -31,5 +33,23 @@ Sentinel is a crime intelligence dashboard built on 50,000+ real incidents from 
 ## Data Source
 
 All incident data is sourced from the Chicago Police Department's public API. The data has an approximate 7-day reporting lag from the time of incident to availability in the API. The Historical Risk Forecast accounts for this by using year-to-date pattern analysis rather than real-time prediction.
-```"
 
+## Getting Started
+
+```bash
+git clone https://github.com/rayaansiddiqui04/Sentinel.git
+cd Sentinel
+npm install
+cp .env.example .env   # add your OpenAI key
+npm run dev
+```
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `OPENAI_KEY` | OpenAI API key (server-side only, used by Vercel function) |
+
+## License
+
+MIT
