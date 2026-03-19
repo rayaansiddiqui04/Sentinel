@@ -1,16 +1,35 @@
-# React + Vite
+# Sentinel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Real-time Chicago crime intelligence platform with predictive risk modeling, AI-powered briefings, and network link analysis.
 
-Currently, two official plugins are available:
+**Live Demo:** [sentinel-one-xi.vercel.app](https://sentinel-one-xi.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+Sentinel is a crime intelligence dashboard built on 50,000+ real incidents from the Chicago Police Department API. It combines geospatial visualization, statistical pattern modeling, and AI-powered analysis to transform raw crime data into actionable intelligence.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- **Interactive Crime Map** — Plot incidents on a dark-themed Chicago map with severity-coded markers, filterable by crime type and severity level
+- **Heatmap Mode** — Density overlay showing crime concentration across neighborhoods
+- **Historical Risk Forecast** — Scores community areas by crime frequency for the current day-of-week and hour using year-to-date CPD data, overlaying colored risk zones on the map
+- **Network Link Analysis** — Identifies clusters of similar crimes occurring within close proximity and timeframe, surfacing potential serial activity
+- **AI Incident Briefings** — Generates neighborhood-level tactical intelligence reports powered by natural language AI
+- **AI Chatbot** — Ask questions about crime patterns, neighborhoods, and safety insights
+- **Analyst View** — Detailed breakdowns of crime data with filtering and sorting
+- **Safety Rankings** — Community area rankings by crime volume and severity
+- **Live Incident Feed** — Real-time stream of reported incidents
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **Frontend:** React (Vite)
+- **Mapping:** React-Leaflet with CartoDB Dark Matter tiles
+- **AI:** OpenAI API for briefings and chatbot
+- **Data:** Chicago Police Department API (~50K incidents, updated with ~7-day reporting lag)
+- **Deployment:** Vercel
+
+## Data Source
+
+All incident data is sourced from the Chicago Police Department's public API. The data has an approximate 7-day reporting lag from the time of incident to availability in the API. The Historical Risk Forecast accounts for this by using year-to-date pattern analysis rather than real-time prediction.
+```"
+
