@@ -50,7 +50,7 @@ export default function ChatBot({ aiOpen, setAiOpen, aiMessages, aiLoading, askA
           <div style={{ padding: "12px 16px", borderTop: "1px solid #1a1a2e", background: "#0d1520", borderRadius: "0 0 12px 12px", display: "flex", gap: "8px" }}>
             <input
               value={question}
-              onChange={e => setQuestion(e.target.value)}
+              onChange={e => { clearTimeout(aiAutoCloseTimer.current); setQuestion(e.target.value) }}
               onKeyDown={e => e.key === "Enter" && handleSend()}
               placeholder="Ask about the data..."
               style={{ flex: 1, background: "#0d1520", border: "1px solid #3a3a5c", color: "#c0c8d8", padding: "8px 12px", fontFamily: "monospace", fontSize: "11px", borderRadius: "4px" }}
