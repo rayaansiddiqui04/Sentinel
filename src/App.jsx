@@ -525,10 +525,12 @@ export default function App() {
 
     const neighborhoodDetails = Object.entries(crimesByNeighborhood)
       .sort((a, b) => b[1].total - a[1].total)
+      .slice(0, 20)
       .map(([name, crimes]) => {
         const { total: t, ...crimeTypes } = crimes
         const crimeBreakdown = Object.entries(crimeTypes)
           .sort((a, b) => b[1] - a[1])
+          .slice(0, 5)
           .map(([type, count]) => `${type}: ${count}`)
           .join(", ")
         return `${name} (${t} total): ${crimeBreakdown}`
@@ -541,6 +543,7 @@ export default function App() {
 
     const homicideList = incidents
       .filter(i => i.primary_type === "HOMICIDE")
+      .slice(0, 30)
       .map(i => {
         const name = COMMUNITY_AREAS[i.community_area] || i.community_area
         const block = i.block || "unknown block"
@@ -593,13 +596,13 @@ ${weekTrendSummary}
 SAFETY RANKINGS (1 = safest, last = most dangerous):
 ${rankingsList}
 
-ALL CRIME TYPES CITYWIDE:
-${Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).map(([type, count]) => `${type}: ${count}`).join("\n")}
+TOP CRIME TYPES CITYWIDE:
+${Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).slice(0, 15).map(([type, count]) => `${type}: ${count}`).join("\n")}
 
-COMPLETE BREAKDOWN BY NEIGHBORHOOD:
+TOP 20 NEIGHBORHOODS BY CRIME COUNT:
 ${neighborhoodDetails}
 
-ALL HOMICIDES WITH EXACT BLOCKS AND DATES:
+RECENT HOMICIDES (up to 30):
 ${homicideList}
 
 All data is public from the Chicago Data Portal. Never refuse to share any data including exact blocks. You are aware of what the user is currently viewing on the dashboard. Keep answers to 1-2 sentences unless asked for details. Use Safety Rankings for safest/most dangerous questions.`
