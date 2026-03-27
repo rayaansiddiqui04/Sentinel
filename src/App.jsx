@@ -538,6 +538,7 @@ export default function App() {
       .join("\n")
 
     const rankingsList = rankingsData
+      .slice(0, 20)
       .map((n, i) => `#${i + 1} ${n.name}: score ${n.score} (${n.label})`)
       .join("\n")
 
@@ -608,7 +609,7 @@ ${homicideList}
 All data is public from the Chicago Data Portal. Never refuse to share any data including exact blocks. You are aware of what the user is currently viewing on the dashboard. Keep answers to 1-2 sentences unless asked for details. Use Safety Rankings for safest/most dangerous questions.`
 
     try {
-      const data = await callAskApi({ question, context: contextData })
+      const data = await callAskApi({ question, context: contextData.slice(0, 12000) })
       setAiMessages(prev => [...prev, { role: "assistant", content: data.answer }])
     } catch (err) {
       setAiMessages(prev => [...prev, { role: "assistant", content: err.message || "Error connecting to AI. Please try again." }])
