@@ -1,4 +1,14 @@
-export default function ChatBot({ aiOpen, setAiOpen, aiMessages, aiQuestion, setAiQuestion, aiLoading, askAI, aiAutoCloseTimer }) {
+import { useState } from 'react'
+
+export default function ChatBot({ aiOpen, setAiOpen, aiMessages, aiLoading, askAI, aiAutoCloseTimer }) {
+  const [question, setQuestion] = useState("")
+
+  const handleSend = () => {
+    if (!question.trim()) return
+    askAI(question)
+    setQuestion("")
+  }
+
   return (
     <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 1000 }}>
       {aiOpen && (
@@ -17,7 +27,7 @@ export default function ChatBot({ aiOpen, setAiOpen, aiMessages, aiQuestion, set
                 <div>Ask me anything about Chicago crime data</div>
                 <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
                   {["Is Austin safe at night?", "What time is most dangerous?", "Which area has most theft?"].map(q => (
-                    <div key={q} onClick={() => setAiQuestion(q)} style={{ background: "#050508", border: "1px solid #1a1a2e", padding: "8px 12px", fontSize: "10px", color: "#8888aa", cursor: "pointer", borderRadius: "4px" }}>{q}</div>
+                    <div key={q} onClick={() => setQuestion(q)} style={{ background: "#050508", border: "1px solid #1a1a2e", padding: "8px 12px", fontSize: "10px", color: "#8888aa", cursor: "pointer", borderRadius: "4px" }}>{q}</div>
                   ))}
                 </div>
               </div>
@@ -39,13 +49,13 @@ export default function ChatBot({ aiOpen, setAiOpen, aiMessages, aiQuestion, set
           </div>
           <div style={{ padding: "12px 16px", borderTop: "1px solid #1a1a2e", background: "#0d1520", borderRadius: "0 0 12px 12px", display: "flex", gap: "8px" }}>
             <input
-              value={aiQuestion}
-              onChange={e => setAiQuestion(e.target.value)}
-              onKeyDown={e => e.key === "Enter" && askAI()}
+              value={question}
+              onChange={e => setQuestion(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && handleSend()}
               placeholder="Ask about the data..."
               style={{ flex: 1, background: "#0d1520", border: "1px solid #3a3a5c", color: "#c0c8d8", padding: "8px 12px", fontFamily: "monospace", fontSize: "11px", borderRadius: "4px" }}
             />
-            <button onClick={askAI} disabled={aiLoading} style={{ background: "#5c7cfa", border: "none", color: "#ffffff", padding: "8px 12px", cursor: "pointer", borderRadius: "4px", fontSize: "16px" }}>
+            <button onClick={handleSend} disabled={aiLoading} style={{ background: "#5c7cfa", border: "none", color: "#ffffff", padding: "8px 12px", cursor: "pointer", borderRadius: "4px", fontSize: "16px" }}>
               →
             </button>
           </div>

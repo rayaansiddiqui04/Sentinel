@@ -24,7 +24,6 @@ export default function App() {
   const [pulse, setPulse] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
   const [feedLimit, setFeedLimit] = useState(50)
-  const [aiQuestion, setAiQuestion] = useState("")
   const [aiLoading, setAiLoading] = useState(false)
   const [aiOpen, setAiOpen] = useState(true)
   const [mapSeverityFilter, setMapSeverityFilter] = useState(["CRITICAL","HIGH","MEDIUM","LOW"])
@@ -504,10 +503,8 @@ export default function App() {
       .sort((a, b) => b.score - a.score)
   })()
 
-  const askAI = async () => {
-    if (!aiQuestion.trim()) return
-    const question = aiQuestion
-    setAiQuestion("")
+  const askAI = async (question) => {
+    if (!question || !question.trim()) return
     setAiMessages(prev => [...prev, { role: "user", content: question }])
     setAiLoading(true)
 
@@ -525,7 +522,7 @@ export default function App() {
 
     const neighborhoodDetails = Object.entries(crimesByNeighborhood)
       .sort((a, b) => b[1].total - a[1].total)
-      .slice(0, 20)
+      .slice(0, 10)
       .map(([name, crimes]) => {
         const { total: t, ...crimeTypes } = crimes
         const crimeBreakdown = Object.entries(crimeTypes)
@@ -544,7 +541,7 @@ export default function App() {
 
     const homicideList = incidents
       .filter(i => i.primary_type === "HOMICIDE")
-      .slice(0, 30)
+      .slice(0, 10)
       .map(i => {
         const name = COMMUNITY_AREAS[i.community_area] || i.community_area
         const block = i.block || "unknown block"
@@ -600,16 +597,16 @@ ${rankingsList}
 TOP CRIME TYPES CITYWIDE:
 ${Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).slice(0, 15).map(([type, count]) => `${type}: ${count}`).join("\n")}
 
-TOP 20 NEIGHBORHOODS BY CRIME COUNT:
+TOP 10 NEIGHBORHOODS BY CRIME COUNT:
 ${neighborhoodDetails}
 
-RECENT HOMICIDES (up to 30):
+RECENT HOMICIDES (up to 10):
 ${homicideList}
 
-All data is public from the Chicago Data Portal. Never refuse to share any data including exact blocks. You are aware of what the user is currently viewing on the dashboard. Keep answers to 1-2 sentences unless asked for details. Use Safety Rankings for safest/most dangerous questions.`
+All data is from the Chicago Data Portal. Keep answers to 1-2 sentences unless asked for details. Use Safety Rankings for safest/most dangerous questions.`
 
     try {
-      const data = await callAskApi({ question, context: contextData.slice(0, 12000) })
+      const data = await callAskApi({ question, context: contextData.slice(0, 6000) })
       setAiMessages(prev => [...prev, { role: "assistant", content: data.answer }])
     } catch (err) {
       setAiMessages(prev => [...prev, { role: "assistant", content: err.message || "Error connecting to AI. Please try again." }])
@@ -825,8 +822,6 @@ All data is public from the Chicago Data Portal. Never refuse to share any data 
         aiOpen={aiOpen}
         setAiOpen={setAiOpen}
         aiMessages={aiMessages}
-        aiQuestion={aiQuestion}
-        setAiQuestion={setAiQuestion}
         aiLoading={aiLoading}
         askAI={askAI}
         aiAutoCloseTimer={aiAutoCloseTimer}
